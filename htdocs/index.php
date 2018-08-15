@@ -7,7 +7,7 @@ require_once __DIR__.'/../myfolder/core/require.php';
     <meta charset="utf-8">
     <title>YoungxuJi</title>
     <?php
-    include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/pub_link.php';
+    include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/pub_link.inc.php';
     ?>
 </head>
 <body>
@@ -18,7 +18,7 @@ require_once __DIR__.'/../myfolder/core/require.php';
 
 <?php
 define('HEADER_ACTIVE',0);
-include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/header.php';
+include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/header.inc.php';
 ?>
 <section class="probootstrap-slider flexslider">
     <div class="probootstrap-text-intro">
@@ -43,13 +43,13 @@ include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/header.php';
 </section>
 
 <?php
-include \GLOBAL_CONFIG\WEB_ROOTPATH . 'msg_board/msg_board.php';
+include \GLOBAL_CONFIG\WEB_ROOTPATH . 'msg_board/msg_board.inc.php';
 
-include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/footer.php';
+include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/footer.inc.php';
 
-include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/top_but.php';
+include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/top_but.inc.php';
 
-include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/pub_script.php';
+include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/pub_script.inc.php';
 
 if (!empty($g_after_script)) {
     foreach ($g_after_script as $script){

@@ -41,13 +41,13 @@ if(isset($_GET['type'])){
     <meta charset="utf-8">
     <title><?php echo $title;?></title>
     <?php
-    include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/pub_link.php';
+    include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/pub_link.inc.php';
     ?>
 
 </head>
 <body>
 <?php
-include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/header.php';
+include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/header.inc.php';
 ?>
 <section class="probootstrap-section probootstrap-bg" style="background-image: url(../assets/img/slider_2.jpg);">
     <div class="container text-center">
@@ -56,11 +56,11 @@ include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/header.php';
     </div>
 </section>
 <?php
-include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/footer.php';
+include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/footer.inc.php';
 
-include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/top_but.php';
+include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/top_but.inc.php';
 
-include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/pub_script.php';
+include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/pub_script.inc.php';
 ?>
 </body>
 </html>

@@ -116,6 +116,7 @@ eof;
         ?>
     </div>
 </header>
+<!--suppress JSUnusedLocalSymbols -->
 <script>
     function logout() {
         $.ajax({

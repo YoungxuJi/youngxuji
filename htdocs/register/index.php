@@ -20,7 +20,7 @@ if(!empty($ld->get_account_id())){//当前用户已登录
     <meta charset="utf-8">
     <title>注册</title>
     <?php
-    include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/pub_link.php';
+    include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/pub_link.inc.php';
     ?>
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
@@ -31,7 +31,7 @@ if(!empty($ld->get_account_id())){//当前用户已登录
 </head>
 <body>
 <?php
-include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/header.php';
+include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/header.inc.php';
 ?>
 <h1 class="login-h">注册YoungxuJi</h1>
 <div class="log">
@@ -72,11 +72,11 @@ include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/header.php';
 <!--    <p>Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>-->
 <!--</div>-->
 <?php
-include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/footer.php';
+include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/footer.inc.php';
 
-include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/top_but.php';
+include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/top_but.inc.php';
 
-include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/pub_script.php';
+include \GLOBAL_CONFIG\WEB_ROOTPATH . 'inc/pub_script.inc.php';
 ?>
 <script>
     function reflushImg(img) {
