@@ -1,0 +1,5 @@
+RewriteEngine on
+#RewriteCond %{REQUEST_URI} !=/main.php
+#RewriteRule ^ /main.php [L]
+RewriteRule ^(.*)\.ajax$ ajax/$1.php [NC]
+#ErrorDocument 404 /404.php
