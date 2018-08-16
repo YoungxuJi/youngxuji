@@ -6,17 +6,27 @@
             <div id="mid_list" class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
             <div id="right_list" class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
         </div>
+        <div class="row">
+                <ul class="posts-nav">
+                    <li class="previous"><a href="#" >←</a></li>
+                    <li class="current" ><a contenteditable id="page_board" title="请输入非0整数页码,如输入负数表示倒数第几页." href="#" >3</a></li>
+                    <li class="next"><a href="#">→</a></li>
+                </ul>
+        </div>
     </div>
 </section>
 <?php
 ob_start();
 ?>
 <script>
-    let list = [$('#left_list'),$('#mid_list'),$('#right_list')];
+    let board_list = [$('#left_list'),$('#mid_list'),$('#right_list')];
 
-    let dataSenter = new DataSender('', '<?php echo \GLOBAL_CONFIG\URL_ROOTPATH?>msg_board/board_data.json',
+    let boardDataSenter = new DataSender('', '<?php echo \GLOBAL_CONFIG\URL_ROOTPATH?>msg_board/board_data.json',
         function (returnData) {
-            // console.log(returnData);
+            //清空留言板
+            $(board_list[0]).html("");
+            $(board_list[1]).html("");
+            $(board_list[2]).html("");
             let data = returnData['data'];
             let board_arr = [[],[],[]];
             let height=[0,0,0];
@@ -34,15 +44,15 @@ ob_start();
                 $(board_1).append(content);
                 $(board_0).append(board_1);
                 if(j<len/3) {
-                    $(list[0]).append(board_0);
+                    $(board_list[0]).append(board_0);
                     height[0]+=board_1[0].offsetHeight;
                     board_arr[0].push([board_0,board_1[0].offsetHeight]);
                 }else if(j<len*2/3){
-                    $(list[1]).append(board_0);
+                    $(board_list[1]).append(board_0);
                     height[1]+=board_1[0].offsetHeight;
                     board_arr[1].push([board_0,board_1[0].offsetHeight]);
                 }else {
-                    $(list[2]).append(board_0);
+                    $(board_list[2]).append(board_0);
                     height[2]+=board_1[0].offsetHeight;
                     board_arr[2].push([board_0,board_1[0].offsetHeight]);
                 }
@@ -70,15 +80,39 @@ ob_start();
                 board_arr[min].push(max_list_last_board);
                 height[min]+=max_list_last_board[1];
                 $(max_list_last_board[0]).remove();
-                $(list[min]).append(max_list_last_board[0]);
+                $(board_list[min]).append(max_list_last_board[0]);
             }
             // console.log(board_arr);
             // aaa = board_arr;
             contentWayPoint();
         });
+    boardDataSenter.sent();
 
-    dataSenter.sent();
+    let page_board = $('#page_board');
+    let contents = $(page_board).html();
+    $(page_board).focus(function () {
+        window.document.onkeydown = function (evt){
+            evt = (evt) ? evt : window.event;
+            if (evt.keyCode) {
+                if(evt.keyCode ===13){
+                    $(page_board).blur();
+                }
+            }
+        };
 
+    });
+    $(page_board).blur(function() {
+        if ((contents!==$(this).html())) {// 如果内容有修改
+            if (/^-[1-9][0-9]*$/.test($(this).html())) {//满足页面要求
+                console.log('输入：' + $(this).html());
+                contents = $(this).html();
+                //todo something
+            } else {
+                alert('请输入正确的页面格式!');
+                $(this).html(contents);
+            }
+        }
+    });
 </script>
 <?php
 $g_after_script[] = ob_get_contents();
