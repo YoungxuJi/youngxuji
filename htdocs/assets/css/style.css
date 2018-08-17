@@ -83,9 +83,9 @@ small, .font_small {
   font-size: 0.707em;
 }
 
-p, ul, ol, figure {
-  margin-bottom: 1.3em;
-}
+/*p, ul, ol, figure {*/
+  /*margin-bottom: 1.3em;*/
+/*}*/
 
 a {
   -webkit-transition: .3s all;
