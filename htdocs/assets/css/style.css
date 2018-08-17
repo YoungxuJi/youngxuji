@@ -1173,7 +1173,7 @@ a.hover-reverse:hover, a.hover-reverse:focus, a.hover-reverse:active {
   appearance: none;
   border: 2px solid #cccccc;
   background: none;
-  color: #ffffff;
+  /*color: #ffffff;*/
   -webkit-transition: .3s all ease-out;
   transition: .3s all ease-out;
 }

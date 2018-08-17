@@ -13,14 +13,25 @@
                     <li class="next"><a href="#">→</a></li>
                 </ul>
         </div>
+        <div class="row">
+            <form class="probootstrap-form mb60" id="form_board" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="message">发表留言</label>
+                    <textarea cols="30" rows="10" class="form-control" id="message" name="message"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" id="submit" name="submit" value="发送">
+                </div>
+            </form>
+        </div>
     </div>
 </section>
 <?php
 ob_start();
 ?>
 <script>
+    /*************留言板**************/
     let board_list = [$('#left_list'),$('#mid_list'),$('#right_list')];
-
     let boardDataSenter = new DataSender('', '<?php echo \GLOBAL_CONFIG\URL_ROOTPATH?>msg_board/board_data.json',
         function (returnData) {
             //清空留言板
@@ -88,6 +99,7 @@ ob_start();
         });
     boardDataSenter.sent();
 
+    /**分页控件**/
     let page_board = $('#page_board');
     let contents = $(page_board).html();
     $(page_board).focus(function () {
@@ -113,6 +125,20 @@ ob_start();
             }
         }
     });
+
+    /*************留言板提交**************/
+    let form_e = $('#form_board');
+    form_e[0].addEventListener('submit',sent_msg_board);
+    let count_board = 0;
+    function sent_msg_board() {
+        if(++count_board<=2){
+            alert('对不起,网络连接错误,请重试!');
+        }else if(count_board<=3){
+            alert('对不起,网络连...算了,我实话和你说吧,这功能我还没做,根本发不了的');
+        }else {
+            alert('别试了,按多少次都没用.要不你给我打点钱赞助下我马上能做好!')
+        }
+    }
 </script>
 <?php
 $g_after_script[] = ob_get_contents();
