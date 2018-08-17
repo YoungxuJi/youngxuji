@@ -1,4 +1,6 @@
-<?php require_once __DIR__ . '/../../myfolder/core/require.php'; ?>
+<?php require_once __DIR__ . '/../../myfolder/core/require.php';
+ $lg = \pubfun\LoginDeal::getLoginDeal();
+?>
 <section class="probootstrap-section">
     <div class="container">
         <div class="row">
@@ -19,9 +21,13 @@
                     <label for="message">发表留言</label>
                     <textarea cols="30" rows="10" class="form-control" id="message" name="message"></textarea>
                 </div>
+                <input type="checkbox" value="on" <?php if(empty($lg->get_account_id())){ ?>checked disabled <?php } ?> title="匿名发送">
+                <label>匿名发送</label>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-primary" id="submit" name="submit" value="发送">
+                    <input type="submit" class="btn btn-primary" id="submit_anonymous" name="submit" value="匿名发送">
+
                 </div>
+
             </form>
         </div>
     </div>
