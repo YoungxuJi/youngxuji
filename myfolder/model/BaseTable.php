@@ -208,7 +208,7 @@ abstract class BaseTable
      *
      *
      */
-    public function insert(array $data){
+    protected function insert(array $data){
         $insert_data = $data;
         $type_of_val = '';//预处理格式字符串
         $q_marks = '';  //预处理问号标记字符串
@@ -354,7 +354,7 @@ quit_function://统一退出方法处理
      * @param array $data
      * @return bool|mixed
      */
-    public function update(array $data){
+    protected function update(array $data){
         $this->conn->autocommit(false);
         if(!isset($data['keyid'])){
             $this->errno = self::NO_KEYID;
