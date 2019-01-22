@@ -35,6 +35,14 @@ namespace model;
  * 如果重复,则
  * $this->error['error_field']=重复值的字段名称
  *
+ * type:TYPE_FUNCTION 调用sql方法
+ * ->>option:string 方法名,要带()
+ * For example:
+ * $data['last_activetime'] = (object)[
+ *      'type'=>TYPE_FUNCTION,
+ *      'option'=>'current_timestamp',
+ * ]
+ *
  * 调用函数,树
  * </pre>
  */

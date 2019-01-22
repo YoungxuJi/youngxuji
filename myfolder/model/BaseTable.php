@@ -47,7 +47,7 @@ abstract class BaseTable
      * <br>连接数据库
      * <br>获取默认表名(通过类名获取)
      */
-    protected function __construct()
+    function __construct()
     {
         $this->conn = \pubfun\DataBase::get_conn();
         if($this->tablename==null){
@@ -179,32 +179,7 @@ abstract class BaseTable
      * @param array $data
      * @return false|int
      * <br>插入一行数据,成功返回主键值,失败返回false
-     * <pre>
-     * $stdClass->type (string)
-     * $stdClass->option (mixed) 根据type确定数据类型//一般情况下是数据的值
-     * $stdClass->extra (mixed) 额外配置项,使用待定
      *
-     * type:TYPE_FOREIGN_KEY 外键
-     * ->>option:string 外键值
-     * [->>extra:string 关联数据表名,如果key以 $tablename+_id 格式命名可以不用配置此option]
-     * For example:
-     *  $data['auth_id'] = (object)[
-     *      'type'=>TYPE_FOREIGN_KEY,
-     *      'option'=>1
-     *  ]
-     *
-     * type:TYPE_UNIQUE 唯一
-     * ->>option:string 值
-     * For example:
-     * $data['username'] = (object)[
-     *      'type'=>TYPE_UNIQUE,
-     *      'option'=>'myusername'
-     * ]
-     * 如果重复,则
-     * $this->error['error_field']=重复值的字段名称
-     *
-     * 调用函数,树
-     * </pre>
      *
      *
      */
@@ -293,6 +268,11 @@ abstract class BaseTable
                         $type_of_val .='s';
                         $q_marks .= ',?';
                         break;
+                    case SpecialDataType::TYPE_FUNCTION:
+                        $function_name = $val->option;
+                        $q_marks .= ",$function_name";
+                        unset($insert_data[$key]);
+                        break;
                     default:
 \DebugLog::get_global_log()->dbg(__FILE__,__LINE__,'插入数据配置type错误:'.var_export($val,true),'error');
                         $this->errno = self::WRONG_VALUE;
@@ -317,7 +297,7 @@ abstract class BaseTable
         $stmt = $this->conn->prepare($sql);     //sql预处理
         if(!$stmt){
             $this->errno = self::WRONG_FIELD;
-            $this->error['msg'] = '插入sql失败,没有对应的字段名';
+            $this->error['msg'] = '插入sql失败,没有对应的字段名或方法名';
             $return = false;
             goto quit_function;
         }
@@ -436,6 +416,11 @@ quit_function://统一退出方法处理
                         $type_of_val .= 's';
                         $kv_sql .= ",$key = ?";
                         break;
+                    case SpecialDataType::TYPE_FUNCTION:
+                        $function_name = $val->option;
+                        $kv_sql .= ",$key = $function_name";
+                        unset($update_data[$key]);
+                        break;
 
                     default:
 \DebugLog::get_global_log()->dbg(__FILE__,__LINE__,'更新数据配置type错误:'.var_export($val,true),'error');
@@ -453,7 +438,7 @@ quit_function://统一退出方法处理
         $stmt = $this->conn->prepare($sql);
         if(!$stmt){
             $this->errno = self::WRONG_FIELD;
-            $this->error['msg'] = '更新sql失败,没有对应的字段名';
+            $this->error['msg'] = '更新sql失败,没有对应的字段名或方法名';
             $return = false;
             goto quit_function;
         }
