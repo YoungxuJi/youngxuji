@@ -137,9 +137,9 @@ ob_start();
     form_e[0].addEventListener('submit',sent_msg_board);
     let count_board = 0;
     function sent_msg_board() {
-        if(++count_board<=2){
+        if(++count_board<=1){
             alert('对不起,网络连接错误,请重试!');
-        }else if(count_board<=3){
+        }else if(count_board<=2){
             alert('对不起,网络连...算了,我实话和你说吧,这功能我还没做,根本发不了的');
         }else {
             alert('别试了,按多少次都没用.要不你给我打点钱赞助下我马上能做好!')
