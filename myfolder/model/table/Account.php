@@ -114,7 +114,7 @@ class Account extends \model\BaseTable
      * @return bool
      * <br>更新最后登录信息
      */
-    public function updateLoginInfo($sessionid){
+    public function updateLoginInfo(string $sessionid){
         if(empty($this->data)){
 \DebugLog::get_global_log()->dbg(__FILE__,__LINE__,'未选取用户,无法更新用户最后登录信息!','warning');
             return false;
