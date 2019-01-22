@@ -6,11 +6,11 @@
  * Time: 22:10
  */
 
-use model\table\Account;
+use model\table\Account_annoymous;
 
 require __DIR__.'/../../myfolder/core/require.php';
 
-$tab = new Account();
+$tab = new Account_annoymous();
 
 //$data = [
 //    'username'=>'985s334',
@@ -28,14 +28,9 @@ $tab = new Account();
 //
 //$tab_simple = [$tab->errno,$tab->error];
 
-//$tab->select('90');
-//$tab->updateLoginInfo(session_id());
+$r = $tab->update(['keyid'=>7,'cookie_id'=>'test_5',/*'last_activetime'=>new \model\SpecialDataType(\model\SpecialDataType::TYPE_FUNCTION,'current_timestamp'),*/'last_ip'=>'test_ip']);
+//$r = $tab->insert(['cookie_id'=>'test_2','last_activetime'=>null,'']);
 
-$r = $tab->update([
-    'keyid'=>90,
-    'last_session'=>'test_04',
-    'last_activetime'=>new \model\SpecialDataType(\model\SpecialDataType::TYPE_FUNCTION,'current_timestamp'),
-    ]);
 echo /** @lang text */
 "<pre>";
     var_dump($r,$tab);
